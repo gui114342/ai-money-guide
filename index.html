@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 赚钱指南 — 用智能开启财富新纪元</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Sans+SC:wght@300;400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --neon-blue: #00f0ff;
+    --neon-purple: #b44aff;
+    --neon-pink: #ff2d7b;
+    --dark: #0a0a1a;
+    --card-bg: rgba(255,255,255,0.04);
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    background: var(--dark);
+    color: #e0e0e0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; width: 100%;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,26,0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+  nav .logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+  }
+  nav .logo span { font-size: 0.7rem; opacity: 0.6; display: block; letter-spacing: 2px; -webkit-text-fill-color: #aaa; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul li a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+  }
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--neon-blue);
+    transition: width 0.3s;
+  }
+  nav ul li a:hover { color: #fff; }
+  nav ul li a:hover::after { width: 100%; }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 1;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,240,255,0.12), transparent 70%);
+    top: 10%; left: 20%;
+    animation: floatBlob 8s ease-in-out infinite;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(180,74,255,0.1), transparent 70%);
+    bottom: 10%; right: 15%;
+    animation: floatBlob 10s ease-in-out infinite reverse;
+  }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border: 1px solid rgba(0,240,255,0.3);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    color: var(--neon-blue);
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    background: rgba(0,240,255,0.05);
+    animation: fadeInDown 1s ease;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 1s ease 0.2s both;
+  }
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #888;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease 0.4s both;
+  }
+  .hero-buttons {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeInUp 1s ease 0.6s both;
+  }
+  .btn-primary {
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(0,240,255,0.3);
+  }
+  .btn-secondary {
+    padding: 14px 36px;
+    background: transparent;
+    color: #ccc;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    border-color: var(--neon-purple);
+    color: #fff;
+    background: rgba(180,74,255,0.08);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-indicator span {
+    display: block;
+    width: 2px; height: 40px;
+    background: linear-gradient(to bottom, var(--neon-blue), transparent);
+    margin: 0 auto;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .stat-item {
+    padding: 2.5rem 2rem;
+    background: var(--dark);
+    text-align: center;
+  }
+  .stat-item .number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-item .label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .section-desc {
+    color: #777;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .method-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    cursor: pointer;
+  }
+  .method-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .method-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .method-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,240,255,0.2);
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .method-card:hover::before { opacity: 1; }
+  .method-card .icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .method-card:nth-child(1) .icon { background: rgba(0,240,255,0.1); }
+  .method-card:nth-child(2) .icon { background: rgba(180,74,255,0.1); }
+  .method-card:nth-child(3) .icon { background: rgba(255,45,123,0.1); }
+  .method-card:nth-child(4) .icon { background: rgba(255,200,0,0.1); }
+  .method-card:nth-child(5) .icon { background: rgba(0,255,150,0.1); }
+  .method-card:nth-child(6) .icon { background: rgba(255,120,0,0.1); }
+  .method-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .method-card p {
+    color: #777;
+    line-height: 1.7;
+    font-size: 0.92rem;
+  }
+  .method-card .earn-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .method-card:nth-child(1) .earn-tag { background: rgba(0,240,255,0.1); color: var(--neon-blue); }
+  .method-card:nth-child(2) .earn-tag { background: rgba(180,74,255,0.1); color: var(--neon-purple); }
+  .method-card:nth-child(3) .earn-tag { background: rgba(255,45,123,0.1); color: var(--neon-pink); }
+  .method-card:nth-child(4) .earn-tag { background: rgba(255,200,0,0.1); color: #ffc800; }
+  .method-card:nth-child(5) .earn-tag { background: rgba(0,255,150,0.1); color: #00ff96; }
+  .method-card:nth-child(6) .earn-tag { background: rgba(255,120,0,0.1); color: #ff7800; }
+  .method-card .click-hint {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #555;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .method-card:hover .click-hint { opacity: 1; }
+
+  /* ===== 模态框 ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .modal {
+    background: #12122a;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 3rem;
+    position: relative;
+    animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .modal-close:hover {
+    background: rgba(255,45,123,0.1);
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+  }
+  .modal .modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .modal h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .modal .modal-earn {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    background: rgba(0,240,255,0.1);
+    color: var(--neon-blue);
+  }
+  .modal .modal-section {
+    margin-bottom: 1.5rem;
+  }
+  .modal .modal-section h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--neon-blue);
+  }
+  .modal .modal-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  .modal .modal-section ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #aaa;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .modal .modal-section ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--neon-purple);
+  }
+  .modal .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .modal .resource-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .modal .resource-item:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(0,240,255,0.2);
+    transform: translateX(5px);
+  }
+  .modal .resource-item .r-icon {
+    font-size: 1.3rem;
+    width: 40px;
+    text-align: center;
+  }
+  .modal .resource-item .r-info h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ddd;
+  }
+  .modal .resource-item .r-info p {
+    font-size: 0.78rem;
+    color: #666;
+    margin-top: 2px;
+  }
+  .modal .resource-item .r-arrow {
+    margin-left: auto;
+    color: #444;
+    font-size: 1.2rem;
+  }
+  .modal .steps {
+    counter-reset: step;
+  }
+  .modal .steps .step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+  }
+  .modal .steps .step::before {
+    counter-increment: step;
+    content: counter(step);
+    min-width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .modal .steps .step .step-content h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ddd;
+    margin-bottom: 0.25rem;
+  }
+  .modal .steps .step .step-content p {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.6;
+  }
+  .modal::-webkit-scrollbar { width: 6px; }
+  .modal::-webkit-scrollbar-track { background: transparent; }
+  .modal::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+  /* ===== 时间线 ===== */
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 2px; height: 100%;
+    background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s ease;
+  }
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -3.45rem; top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    box-shadow: 0 0 20px rgba(0,240,255,0.5);
+  }
+  .timeline-item h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-item h4 span {
+    color: var(--neon-blue);
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 0.75rem;
+  }
+  .timeline-item p {
+    color: #777;
+    line-height: 1.7;
+    font-size: 0.92rem;
+  }
+
+  /* ===== 工具推荐 ===== */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+  .tool-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: scale(0.9);
+    cursor: pointer;
+  }
+  .tool-card.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .tool-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(180,74,255,0.3);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+  }
+  .tool-card .tool-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .tool-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .tool-card p {
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .tool-card .tool-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--neon-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .tool-card .tool-link:hover {
+    border-color: var(--neon-blue);
+  }
+
+  /* ===== 收入计算器 ===== */
+  .calculator-section {
+    background: linear-gradient(135deg, rgba(0,240,255,0.03), rgba(180,74,255,0.03));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .calc-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .calc-row label {
+    font-size: 0.9rem;
+    color: #aaa;
+    min-width: 140px;
+  }
+  .calc-row input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+  }
+  .calc-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,240,255,0.4);
+  }
+  .calc-row .range-value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--neon-blue);
+    min-width: 80px;
+    text-align: right;
+  }
+  .calc-result {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 16px;
+    margin-top: 1.5rem;
+  }
+  .calc-result .big-number {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #00ff96, var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .calc-result .note {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-section h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+  }
+  .cta-section p {
+    color: #777;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: #444;
+    font-size: 0.8rem;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,240,255,0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: left 0.1s, top 0.1s;
+  }
+
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .methods-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .calculator-section { padding: 2rem 1.5rem; }
+    .modal { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- 模态框容器 -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    AI 赚钱指南
+    <span>INTELLIGENT WEALTH</span>
+  </div>
+  <ul>
+    <li><a href="#methods">赚钱方式</a></li>
+    <li><a href="#roadmap">学习路线</a></li>
+    <li><a href="#tools">AI 工具</a></li>
+    <li><a href="#calculator">收入预估</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🤖 2026 · AI 变现完全指南</div>
+  <h1>
+    用 <span class="gradient-text">AI</span> 开启<br>
+    <span class="gradient-text">财富新纪元</span>
+  </h1>
+  <p>
+    人工智能正在重新定义「赚钱」的方式。从内容创作到自动化交易，
+    从自由职业到 SaaS 产品 — 这里有你需要的全部路线图。
+  </p>
+  <div class="hero-buttons">
+    <a href="#methods" class="btn-primary">探索赚钱方式 →</a>
+    <a href="#calculator" class="btn-secondary">收入预估器</a>
+  </div>
+  <div class="scroll-indicator"><span></span></div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="number" data-target="5800">0</div>
+    <div class="label">AI 自由职业者月均收入 (元)</div>
+  </div>
+  <div class="stat-item">
+    <div class="number" data-target="340">0</div>
+    <div class="label">AI 相关岗位增长百分比 (%)</div>
+  </div>
+  <div class="stat-item">
+    <div class="number" data-target="92">0</div>
+    <div class="label">企业计划增加 AI 投入 (%)</div>
+  </div>
+  <div class="stat-item">
+    <div class="number" data-target="1280">0</div>
+    <div class="label">中国 AI 创业公司数量</div>
+  </div>
+</div>
+
+<!-- 赚钱方式 -->
+<section id="methods">
+  <div class="section-tag">WAYS TO EARN</div>
+  <h2 class="section-title">六大 AI 变现赛道</h2>
+  <p class="section-desc">点击任意卡片查看详细教程、工具清单和学习资源 ↓</p>
+  <div class="methods-grid">
+
+    <div class="method-card" onclick="openModal(0)">
+      <div class="icon">✍️</div>
+      <h3>AI 内容创作</h3>
+      <p>利用 ChatGPT、Claude 等 AI 工具批量生产高质量文章、短视频脚本、社交媒体内容，通过接单或自媒体变现。</p>
+      <span class="earn-tag">💰 月入 3000-20000+</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+    <div class="method-card" onclick="openModal(1)">
+      <div class="icon">🎨</div>
+      <h3>AI 设计 & 插画</h3>
+      <p>Midjourney、Stable Diffusion 生成商业插画、品牌设计、电商主图，接单或做素材站。</p>
+      <span class="earn-tag">💰 月入 5000-30000+</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+    <div class="method-card" onclick="openModal(2)">
+      <div class="icon">📱</div>
+      <h3>AI 独立开发</h3>
+      <p>用 AI 辅助编程开发小程序、SaaS 工具、浏览器插件，从 MVP 快速验证到产品变现。</p>
+      <span class="earn-tag">💰 月入 10000-100000+</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+    <div class="method-card" onclick="openModal(3)">
+      <div class="icon">📚</div>
+      <h3>AI 教育培训</h3>
+      <p>开发 AI 使用教程、付费课程、知识星球、社群，教别人用 AI 赚钱本身就是最好的生意。</p>
+      <span class="earn-tag">💰 月入 5000-50000+</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+    <div class="method-card" onclick="openModal(4)">
+      <div class="icon">🤖</div>
+      <h3>AI 自动化服务</h3>
+      <p>帮企业搭建 AI 客服、自动化工作流、数据分析系统，技术咨询 + 实施一条龙服务。</p>
+      <span class="earn-tag">💰 月入 10000-80000+</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+    <div class="method-card" onclick="openModal(5)">
+      <div class="icon">📈</div>
+      <h3>AI 量化交易</h3>
+      <p>用机器学习模型分析市场数据，构建自动化交易策略，让 AI 帮你 24/7 执行交易。</p>
+      <span class="earn-tag">💰 收益率因人而异</span>
+      <div class="click-hint">点击查看详细教程 →</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 学习路线 -->
+<section id="roadmap">
+  <div class="section-tag">ROADMAP</div>
+  <h2 class="section-title">从零到变现的学习路线</h2>
+  <p class="section-desc">跟着这个路线走，3-6 个月就能看到第一笔 AI 收入。</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>🌱 入门阶段：掌握 AI 工具 <span>第 1-2 周</span></h4>
+      <p>注册并深度体验 ChatGPT、Claude、Midjourney 等主流 AI 工具，学会 Prompt Engineering 的基本技巧，了解 AI 的能力和边界。</p>
+    </div>
+    <div class="timeline-item">
+      <h4>⚡ 进阶阶段：选择赛道 <span>第 3-4 周</span></h4>
+      <p>根据自己的兴趣和技能背景选择一个主赛道，比如内容创作或独立开发。深入研究该赛道的成功案例和变现模式。</p>
+    </div>
+    <div class="timeline-item">
+      <h4>🔧 实战阶段：打造作品集 <span>第 2-3 月</span></h4>
+      <p>在自由职业平台（Fiverr、猪八戒）接第一单，或者在社交媒体展示你的 AI 作品，积累口碑和案例。</p>
+    </div>
+    <div class="timeline-item">
+      <h4>🚀 变现阶段：规模化收入 <span>第 4-6 月</span></h4>
+      <p>建立标准化流程，将效率提升 5-10 倍。开发自己的产品或课程，从「卖时间」转向「卖产品」。</p>
+    </div>
+    <div class="timeline-item">
+      <h4>🏆 成熟阶段：构建个人品牌 <span>6 月+</span></h4>
+      <p>持续输出高质量内容，建立个人 IP。通过咨询、课程、工具产品等多渠道变现，实现被动收入。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 工具推荐 -->
+<section id="tools">
+  <div class="section-tag">AI TOOLS</div>
+  <h2 class="section-title">必备 AI 工具箱</h2>
+  <p class="section-desc">工欲善其事，必先利其器。这些工具是 AI 赚钱的基石。</p>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-icon">🧠</div>
+      <h4>ChatGPT / Claude</h4>
+      <p>文本生成、代码编写、数据分析、翻译润色的万能助手</p>
+      <a href="https://chat.openai.com" target="_blank" class="tool-link">访问 ChatGPT →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🎨</div>
+      <h4>Midjourney</h4>
+      <p>顶级 AI 绘画工具，商业级出图质量</p>
+      <a href="https://midjourney.com" target="_blank" class="tool-link">访问 Midjourney →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🎬</div>
+      <h4>Runway / Sora</h4>
+      <p>AI 视频生成，从脚本到成片一键搞定</p>
+      <a href="https://runwayml.com" target="_blank" class="tool-link">访问 Runway →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">🎵</div>
+      <h4>Suno / Udio</h4>
+      <p>AI 音乐创作，输入描述即可生成完整歌曲</p>
+      <a href="https://suno.com" target="_blank" class="tool-link">访问 Suno →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">💻</div>
+      <h4>Cursor / Copilot</h4>
+      <p>AI 辅助编程，10 倍开发效率不是梦</p>
+      <a href="https://cursor.sh" target="_blank" class="tool-link">访问 Cursor →</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon">📊</div>
+      <h4>Perplexity</h4>
+      <p>AI 搜索引擎，实时联网的研究神器</p>
+      <a href="https://perplexity.ai" target="_blank" class="tool-link">访问 Perplexity →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 收入计算器 -->
+<section id="calculator">
+  <div class="section-tag">CALCULATOR</div>
+  <h2 class="section-title">AI 收入预估器</h2>
+  <p class="section-desc">调整参数，看看 AI 能帮你赚多少钱。</p>
+  <div class="calculator-section">
+    <div class="calc-row">
+      <label>每周投入时间</label>
+      <input type="range" id="hoursRange" min="5" max="60" value="20">
+      <div class="range-value" id="hoursValue">20 小时</div>
+    </div>
+    <div class="calc-row">
+      <label>技能熟练度</label>
+      <input type="range" id="skillRange" min="1" max="10" value="5">
+      <div class="range-value" id="skillValue">5 / 10</div>
+    </div>
+    <div class="calc-row">
+      <label>选择赛道</label>
+      <input type="range" id="trackRange" min="1" max="6" value="1">
+      <div class="range-value" id="trackValue">内容创作</div>
+    </div>
+    <div class="calc-result">
+      <div style="color:#666;font-size:0.9rem;margin-bottom:0.5rem;">预估月收入</div>
+      <div class="big-number" id="calcResult">¥8,000</div>
+      <div class="note">* 基于行业平均数据估算，实际收入取决于个人努力和市场环境</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>
+    <span class="gradient-text">未来的钱，</span><br>
+    属于会用 AI 的人
+  </h2>
+  <p>不要等待，现在就是最好的入场时机。每天花 30 分钟学习 AI，一年后你会感谢今天的自己。</p>
+  <a href="#methods" class="btn-primary">立即开始 →</a>
+</section>
+
+<footer>
+  <p>AI 赚钱指南 © 2026 — 用智能开启财富新纪元 | 内容仅供参考，投资需谨慎</p>
+</footer>
+
+<script>
+// ===== 模态框数据 =====
+const modalData = [
+  {
+    icon: '✍️',
+    title: 'AI 内容创作',
+    earn: '💰 月入 3000-20000+',
+    intro: '利用 AI 工具批量生产高质量内容，是门槛最低、上手最快的 AI 变现方式。几乎零成本启动，只需要一台电脑和 AI 工具订阅。',
+    steps: [
+      { title: '注册 AI 工具', desc: '订阅 ChatGPT Plus / Claude Pro，体验不同模型的写作风格差异' },
+      { title: '学习 Prompt 技巧', desc: '掌握角色设定、Few-shot、Chain-of-Thought 等高级提示词技巧' },
+      { title: '选择内容方向', desc: '公众号文章、小红书文案、短视频脚本、产品描述、SEO 文章等' },
+      { title: '开始接单', desc: '在 Fiverr、猪八戒、闲鱼等平台发布服务，或在自媒体平台建立影响力' },
+      { title: '规模化运营', desc: '建立标准化流程，用 AI 一天产出过去一周的内容量' }
+    ],
+    resources: [
+      { icon: '📘', name: 'Prompt Engineering 完全指南', desc: '从入门到精通的系统教程', url: 'https://www.promptingguide.ai/zh' },
+      { icon: '🎥', name: 'ChatGPT 写作实战课', desc: '10 个真实案例教你 AI 写作', url: '#' },
+      { icon: '📄', name: '爆款文案模板合集', desc: '50+ 已验证的高转化模板', url: '#' },
+      { icon: '🛒', name: '接单平台汇总', desc: '国内外 AI 写作接单渠道', url: '#' }
+    ]
+  },
+  {
+    icon: '🎨',
+    title: 'AI 设计 & 插画',
+    earn: '💰 月入 5000-30000+',
+    intro: 'AI 绘画正在颠覆设计行业。无需美术功底，用 Midjourney 和 Stable Diffusion 就能产出专业级商业设计。',
+    steps: [
+      { title: '掌握 Midjourney', desc: '学习参数控制、垫图、风格参考等核心技巧，建立个人风格库' },
+      { title: '学习 Stable Diffusion', desc: '本地部署 SD，掌握 LoRA 训练、ControlNet 精确控制' },
+      { title: '选择细分领域', desc: '电商主图、品牌 Logo、插画绘本、UI 配图、壁纸头像等' },
+      { title: '建立作品集', desc: '在小红书、Behance、站酷展示作品，吸引客户主动找你' },
+      { title: '打造被动收入', desc: '上架素材站（如包图网）、做 AI 壁纸小程序、售卖设计模板' }
+    ],
+    resources: [
+      { icon: '🎨', name: 'Midjourney 从零到大师', desc: '200+ 参数和技巧详解', url: 'https://docs.midjourney.com' },
+      { icon: '🖥️', name: 'Stable Diffusion 入门部署', desc: '保姆级本地部署教程', url: '#' },
+      { icon: '📁', name: 'AI 设计接单指南', desc: '平台、定价、交付流程', url: '#' },
+      { icon: '🖼️', name: '素材站上架教程', desc: '包图网、千图网、Envato', url: '#' }
+    ]
+  },
+  {
+    icon: '📱',
+    title: 'AI 独立开发',
+    earn: '💰 月入 10000-100000+',
+    intro: 'AI 让编程门槛降到了历史最低。不会写代码？用 Cursor + ChatGPT 也能开发出完整的 Web 应用和移动端产品。',
+    steps: [
+      { title: '安装 AI 编程工具', desc: 'Cursor / GitHub Copilot / Windsurf，选择一个主力工具' },
+      { title: '学习基础编程', desc: 'HTML/CSS/JS 或 Python，不需要精通，够用就行' },
+      { title: '找到产品灵感', desc: '解决自己的痛点，或改进已有产品的体验' },
+      { title: '快速构建 MVP', desc: '用 AI 辅助一周内做出最小可行产品，快速验证需求' },
+      { title: '发布与迭代', desc: '上线获取用户反馈，持续迭代，加入付费功能' }
+    ],
+    resources: [
+      { icon: '💻', name: 'Cursor AI 编程入门', desc: '零基础用 AI 写出第一个项目', url: 'https://cursor.sh' },
+      { icon: '📦', name: '独立开发者案例库', desc: '50+ 成功的 AI 产品案例', url: 'https://indiehackers.com' },
+      { icon: '🚀', name: 'Vercel 部署教程', desc: '免费部署你的第一个网站', url: '#' },
+      { icon: '💡', name: '产品灵感清单', desc: '100 个可以做的 AI 产品方向', url: '#' }
+    ]
+  },
+  {
+    icon: '📚',
+    title: 'AI 教育培训',
+    earn: '💰 月入 5000-50000+',
+    intro: '教别人用 AI 赚钱，本身就是一门好生意。知识付费市场正在爆发，AI 是最热门的赛道之一。',
+    steps: [
+      { title: '深耕一个 AI 领域', desc: '成为某个 AI 工具或方法的专家，比如 AI 写作、AI 设计' },
+      { title: '建立内容矩阵', desc: '在 B 站、小红书、公众号持续输出 AI 教程，积累粉丝' },
+      { title: '开发付费课程', desc: '在网易云课堂、小鹅通、知识星球上架系统课程' },
+      { title: '运营付费社群', desc: '建立高质量社群，提供 1v1 答疑和资源分享' },
+      { title: '扩展变现渠道', desc: '企业内训、直播带货 AI 工具、出版书籍' }
+    ],
+    resources: [
+      { icon: '📖', name: '知识付费平台对比', desc: '小鹅通/知识星球/千聊 选哪个', url: '#' },
+      { icon: '🎥', name: '课程制作指南', desc: '从选题到录制的完整流程', url: '#' },
+      { icon: '👥', name: '社群运营手册', desc: '如何建立高价值付费社群', url: '#' },
+      { icon: '📈', name: '教育博主案例', desc: '10 个成功的 AI 教育博主', url: '#' }
+    ]
+  },
+  {
+    icon: '🤖',
+    title: 'AI 自动化服务',
+    earn: '💰 月入 10000-80000+',
+    intro: '大量传统企业还不会用 AI。帮他们搭建 AI 客服、自动化工作流、智能报表，技术门槛不高但客单价极高。',
+    steps: [
+      { title: '学习 AI 集成工具', desc: 'Coze (扣子)、Dify、Make、Zapier 等无代码/低代码平台' },
+      { title: '掌握 API 调用', desc: '学会调用 OpenAI / 百度文心 / 阿里通义等 AI API' },
+      { title: '打造标准方案', desc: 'AI 客服系统、智能文档处理、数据分析报告等可复用方案' },
+      { title: '开发客户渠道', desc: '通过企业微信群、行业展会、熟人推荐获取企业客户' },
+      { title: '交付与维护', desc: '提供培训、技术支持和持续优化，建立长期合作关系' }
+    ],
+    resources: [
+      { icon: '🔧', name: 'Coze (扣子) 入门', desc: '字节跳动 AI Bot 构建平台', url: 'https://coze.com' },
+      { icon: '🤖', name: 'Dify 部署指南', desc: '开源 LLM 应用开发平台', url: 'https://dify.ai' },
+      { icon: '📋', name: '企业 AI 方案模板', desc: '客服/报表/文档 处理方案', url: '#' },
+      { icon: '💼', name: '企业获客指南', desc: '如何找到需要 AI 的企业', url: '#' }
+    ]
+  },
+  {
+    icon: '📈',
+    title: 'AI 量化交易',
+    earn: '💰 收益率因人而异',
+    intro: '用机器学习分析金融市场数据，构建自动化交易策略。高风险高回报，需要一定的编程和金融基础。',
+    steps: [
+      { title: '学习量化基础', desc: '了解股票、期货、加密货币市场基本知识和交易机制' },
+      { title: '掌握 Python 量化库', desc: 'Pandas、NumPy、Backtrader、vnpy 等核心工具' },
+      { title: '学习机器学习', desc: 'Scikit-learn、PyTorch，了解 LSTM、XGBoost 等模型' },
+      { title: '回测与优化', desc: '用历史数据验证策略，优化参数，控制风险' },
+      { title: '模拟盘 → 实盘', desc: '先用模拟盘验证，稳定盈利后小额实盘，逐步加仓' }
+    ],
+    resources: [
+      { icon: '📊', name: 'Python 量化入门', desc: '零基础到策略实现', url: '#' },
+      { icon: '🤖', name: 'ML for Trading 课程', desc: '机器学习在金融中的应用', url: '#' },
+      { icon: '📈', name: '回测框架对比', desc: 'Backtrader vs vnpy vs 聚宽', url: '#' },
+      { icon: '⚠️', name: '风险管理手册', desc: '量化交易必须知道的风险', url: '#' }
+    ]
+  }
+];
+
+// ===== 模态框功能 =====
+function openModal(index) {
+  const d = modalData[index];
+  const body = document.getElementById('modalBody');
+  body.innerHTML = `
+    <div class="modal-icon">${d.icon}</div>
+    <h2>${d.title}</h2>
+    <div class="modal-earn">${d.earn}</div>
+    <p style="color:#999;line-height:1.8;margin-bottom:2rem;font-size:0.95rem;">${d.intro}</p>
+    <div class="modal-section">
+      <h3>📋 实操步骤</h3>
+      <div class="steps">
+        ${d.steps.map(s => `
+          <div class="step">
+            <div class="step-content">
+              <h4>${s.title}</h4>
+              <p>${s.desc}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="modal-section">
+      <h3>🎓 学习资源 & 课程</h3>
+      <div class="resource-list">
+        ${d.resources.map(r => `
+          <a class="resource-item" href="${r.url}" target="_blank" rel="noopener">
+            <div class="r-icon">${r.icon}</div>
+            <div class="r-info">
+              <h4>${r.name}</h4>
+              <p>${r.desc}</p>
+            </div>
+            <div class="r-arrow">→</div>
+          </a>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ===== 粒子系统 =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: 0, y: 0 };
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.5 + 0.1;
+    this.color = ['rgba(0,240,255,', 'rgba(180,74,255,', 'rgba(255,45,123,'][Math.floor(Math.random()*3)];
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    const dx = this.x - mouse.x;
+    const dy = this.y - mouse.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < 120) {
+      this.x += dx / dist * 1.5;
+      this.y += dy / dist * 1.5;
+    }
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color + this.opacity + ')';
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 150) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(0,240,255,${0.06 * (1 - dist/150)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top = e.clientY + 'px';
+});
+
+// ===== 数字滚动 =====
+function animateNumbers() {
+  document.querySelectorAll('.number[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const duration = 2000;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(target * eased).toLocaleString();
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// ===== Intersection Observer =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      if (entry.target.classList.contains('stat-item')) {
+        animateNumbers();
+        observer.unobserve(entry.target);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.method-card, .timeline-item, .tool-card, .stat-item').forEach(el => observer.observe(el));
+
+// ===== 收入计算器 =====
+const tracks = ['内容创作', 'AI 设计', '独立开发', '教育培训', '自动化服务', '量化交易'];
+const baseIncome = [3000, 5000, 10000, 5000, 10000, 8000];
+
+function updateCalculator() {
+  const hours = parseInt(document.getElementById('hoursRange').value);
+  const skill = parseInt(document.getElementById('skillRange').value);
+  const track = parseInt(document.getElementById('trackRange').value) - 1;
+  document.getElementById('hoursValue').textContent = hours + ' 小时';
+  document.getElementById('skillValue').textContent = skill + ' / 10';
+  document.getElementById('trackValue').textContent = tracks[track];
+  const hoursMultiplier = hours / 20;
+  const skillMultiplier = 0.3 + (skill / 10) * 1.7;
+  const income = Math.round(baseIncome[track] * hoursMultiplier * skillMultiplier);
+  document.getElementById('calcResult').textContent = '¥' + income.toLocaleString();
+}
+
+document.getElementById('hoursRange').addEventListener('input', updateCalculator);
+document.getElementById('skillRange').addEventListener('input', updateCalculator);
+document.getElementById('trackRange').addEventListener('input', updateCalculator);
+updateCalculator();
+
+// ===== 平滑滚动 =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
